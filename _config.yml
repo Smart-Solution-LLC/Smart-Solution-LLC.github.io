@@ -18,7 +18,7 @@ title: Smart Solution LLC
 
 tagline: Our Github Pages Site! (work in progress) # it will display as the sub-title
 
-description: >- # used by seo meta and the atom feed
+description: # used by seo meta and the atom feed
   Description in progress
 
 # Fill in the protocol & hostname for your site.
@@ -29,7 +29,7 @@ github:
   username: Smart-Solution-LLC # change to your github username
 
 twitter:
-  username: @Smart_Sol_518
+  username: twitter_username # change to your twitter username
 
 social:
   # Change to your full name.
