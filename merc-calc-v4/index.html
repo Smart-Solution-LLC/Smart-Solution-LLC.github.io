@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercari Fees Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .row {
+            display: flex;
+        }
+        .col-graphs {
+            max-width: 400px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mercari Fees Calculator</h2>
+        <div class="row">
+            <!-- Inputs and Results Column -->
+            <div class="col-md-8">
+                <form id="mercariForm">
+                    <!-- Listing Price -->
+                    <div class="mb-3">
+                        <label for="listingPrice" class="form-label">Listing Price ($):</label>
+                        <input type="number" class="form-control" id="listingPrice" placeholder="Enter the listing price">
+                    </div>
+
+                    <!-- Shipping Cost Paid by Buyer/Seller -->
+                    <div class="mb-3">
+                        <label for="shippingCost" class="form-label">Shipping Cost ($):</label>
+                        <input type="number" class="form-control" id="shippingCost" placeholder="Enter the shipping cost">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="shippingPaidBy" class="form-label">Shipping Paid By:</label>
+                        <select class="form-control" id="shippingPaidBy">
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
+                        </select>
+                    </div>
+
+                    <!-- Actual Shipping Cost -->
+                    <div class="mb-3">
+                        <label for="actualShippingCost" class="form-label">Actual Shipping Cost ($):</label>
+                        <input type="number" class="form-control" id="actualShippingCost" placeholder="Enter actual shipping cost">
+                    </div>
+
+                    <!-- Sales Tax -->
+                    <div class="mb-3">
+                        <label for="salesTax" class="form-label">Sales Tax (%):</label>
+                        <input type="number" class="form-control" id="salesTax" value="7">
+                    </div>
+
+                    <!-- Marketing Costs -->
+                    <div class="mb-3">
+                        <label for="marketingCost" class="form-label">Marketing Costs ($):</label>
+                        <input type="number" class="form-control" id="marketingCost" placeholder="Enter marketing costs">
+                    </div>
+
+                    <!-- Cost of Goods Sold -->
+                    <div class="mb-3">
+                        <label for="itemCogs" class="form-label">Cost of Goods Sold (COGS) ($):</label>
+                        <input type="number" class="form-control" id="itemCogs" placeholder="Enter cost of goods sold">
+                    </div>
+
+                    <!-- Withdraw Fee -->
+                    <div class="mb-3">
+                        <label for="withdrawalFee" class="form-label">Withdrawal Fee:</label>
+                        <select class="form-control" id="withdrawalFee">
+                            <option value="0">None</option>
+                            <option value="2">Direct Deposit ($2)</option>
+                            <option value="3">Instant Payout ($3)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="calculate()">Calculate</button>
+                </form>
+
+                <h3>Calculation Results</h3>
+                <div id="buyerResults">
+                    <h4>Buyer Calculation Results</h4>
+                    <p>Item Price: <span id="buyerItemPrice"></span></p>
+                    <p>Shipping Cost: <span id="buyerShippingCost"></span></p>
+                    <p>Service Fee (10%): <span id="buyerServiceFee"></span></p>
+                    <p>Payment Processing Fee ($0.50 + 2.9%): <span id="buyerPaymentFee"></span></p>
+                    <p>Sales Tax: <span id="buyerSalesTax"></span></p>
+                    <p>Total Payment: <span id="buyerTotalPayment"></span></p>
+                </div>
+
+                <div id="sellerResults">
+                    <h4>Seller Calculation Results</h4>
+                    <p>Gross Revenue: <span id="grossRevenue"></span></p>
+                    <p>Total Fees: <span id="totalFees"></span></p>
+                    <p>Net Revenue: <span id="netRevenue"></span></p>
+                    <p>Profit Margin: <span id="profitMargin"></span></p>
+                </div>
+            </div>
+
+            <!-- Graphs Column -->
+            <div class="col-graphs">
+                <canvas id="chartPie" width="400" height="400"></canvas>
+                <canvas id="chartBar" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="calc.js"></script>
+</body>
+</html>
